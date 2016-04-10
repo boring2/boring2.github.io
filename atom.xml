@@ -4,7 +4,7 @@
   <subtitle><![CDATA[A Boring Man's Blog, Not Two.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.boring.ren/"/>
-  <updated>2015-12-06T03:11:41.000Z</updated>
+  <updated>2016-04-10T07:43:20.000Z</updated>
   <id>http://blog.boring.ren/</id>
   
   <author>
@@ -13,6 +13,125 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[JavaScript中四种调用函数的方法]]></title>
+    <link href="http://blog.boring.ren/2016/04/10/JavaScript%E4%B8%AD%E5%9B%9B%E7%A7%8D%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/"/>
+    <id>http://blog.boring.ren/2016/04/10/JavaScript中四种调用函数的方法/</id>
+    <published>2016-04-10T07:33:46.000Z</published>
+    <updated>2016-04-10T07:43:20.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="1-函数调用">1.函数调用</h3><h3 id="2-方法调用">2.方法调用</h3><h3 id="3-构造器调用">3.构造器调用</h3><p>可参考 <a href="http://blog.boring.ren/2016/04/10/JavaScript在new一个对象的时候具体发生了什么/" title="new一个对象的时候具体发生了什么" target="_blank">new一个对象的时候具体发生了什么</a></p>
+<h3 id="4-使用call,apply调用">4.使用call,apply调用</h3><p><strong> 其实四种调用方式就是函数上下文不同而已.</strong></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="1-函数调用">1.函数调用</h3><h3 id="2-方法调用">2.方法调用</h3><h3 id="3-构造器调用">3.构造器调用</h3><p>可参考 <a href="http://blog.boring.ren/2016/04/10/JavaScr]]>
+    </summary>
+    
+      <category term="javascript" scheme="http://blog.boring.ren/tags/javascript/"/>
+    
+      <category term="javascript" scheme="http://blog.boring.ren/categories/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[JavaScript在new一个对象的时候具体发生了什么]]></title>
+    <link href="http://blog.boring.ren/2016/04/10/JavaScript%E5%9C%A8new%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%97%B6%E5%80%99%E5%85%B7%E4%BD%93%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/"/>
+    <id>http://blog.boring.ren/2016/04/10/JavaScript在new一个对象的时候具体发生了什么/</id>
+    <published>2016-04-10T07:16:08.000Z</published>
+    <updated>2016-04-10T07:32:31.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="我们经常使用new去调用的一个构造器函数,_但是new之后到底做了什么呢?">我们经常使用new去调用的一个构造器函数, 但是new之后到底做了什么呢?</h2><p><strong> 如:</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var Person = function (name) &#123;&#10;    this.name = name;&#10;&#125;&#10;var p = new Person(&#34;Boring&#34;);</span><br></pre></td></tr></table></figure></p>
+<p><strong> 以上代码在调用时,会变成如下 </strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var p = (Person (name) &#123;&#10;    var _newObj = &#123; //#0&#10;        constructor: Person; // #1&#10;        __proto__: Person.prototype; //#2&#10;    &#125;;&#10;    _newObj.constructor(name); //#3&#10;    return _newObj; //#4&#10;&#125;)();</span><br></pre></td></tr></table></figure></p>
+<p><strong>解析:</strong><br>#0 创建一个新的对象,_newObj;<br>#1 将对象的constructor赋值为Person,即构造器函数;<br>#2 将对象的__proto__属性赋值为Person.prototype,即原型链的概念;<br>#3 使用构造器函数的方法设置name属性this.name = name;可以转成<strong>_newObj.constructor.call(_newObj, name)</strong>,此时的this就是指向_newObj,由于call的原因;<br>#4 返回改对象给p变量.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="我们经常使用new去调用的一个构造器函数,_但是new之后到底做了什么呢?">我们经常使用new去调用的一个构造器函数, 但是new之后到底做了什么呢?</h2><p><strong> 如:</strong><br><figure class="highlight]]>
+    </summary>
+    
+      <category term="javascript" scheme="http://blog.boring.ren/tags/javascript/"/>
+    
+      <category term="javascript" scheme="http://blog.boring.ren/categories/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[一个关于javascript闭包和this的题目]]></title>
+    <link href="http://blog.boring.ren/2016/04/10/%E4%B8%80%E4%B8%AA%E5%85%B3%E4%BA%8Ejavascript%E9%97%AD%E5%8C%85%E5%92%8Cthis%E7%9A%84%E9%A2%98%E7%9B%AE/"/>
+    <id>http://blog.boring.ren/2016/04/10/一个关于javascript闭包和this的题目/</id>
+    <published>2016-04-10T03:36:40.000Z</published>
+    <updated>2016-04-10T07:16:31.000Z</updated>
+    <content type="html"><![CDATA[<p>##1.<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var name = &#34;The Window&#34;;&#10;var object = &#123;&#10;    name: &#34;My Object&#34;,&#10;    getNameFunc: function()&#123;&#10;        return this.name;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>问:object.getNameFuc()的返回值是什么?</strong><br>答:”My Object”</p>
+<p>##2.<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var name = &#34;The Window&#34;;&#10;var object = &#123;&#10;    name: &#34;My Object&#34;,&#10;    getNameFunc: function()&#123;&#10;        return function()&#123;&#10;            return name;&#10;        &#125;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>问:object.getNameFuc()()的返回值是什么?</strong><br>答:”The Window”,因为根据函数的作用域链(闭包本身-&gt;然后是闭包外面的函数-&gt;window)找name,但是object.getNameFunc中并没有name变量,所以只能找到window中的name,不要被object.name中的name迷惑了.</p>
+<p>##3.<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var name = &#34;The Window&#34;;&#10;var object = &#123;&#10;    name: &#34;My Object&#34;,&#10;    getNameFunc: function()&#123;&#10;        return function()&#123;&#10;            return this.name;&#10;        &#125;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>问:object.getNameFuc()()的返回值是什么?</strong><br>答:还是”The Window”,因为闭包的调用者或者是执行者永远都是window,所以this也就是window了.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>##1.<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><spa]]>
+    </summary>
+    
+      <category term="javascript" scheme="http://blog.boring.ren/tags/javascript/"/>
+    
+      <category term="闭包" scheme="http://blog.boring.ren/tags/%E9%97%AD%E5%8C%85/"/>
+    
+      <category term="javascript" scheme="http://blog.boring.ren/categories/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[以前的记录整理]]></title>
+    <link href="http://blog.boring.ren/2016/04/10/%E4%BB%A5%E5%89%8D%E7%9A%84%E8%AE%B0%E5%BD%95%E6%95%B4%E7%90%86/"/>
+    <id>http://blog.boring.ren/2016/04/10/以前的记录整理/</id>
+    <published>2016-04-10T02:51:00.000Z</published>
+    <updated>2016-04-10T07:37:51.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="设计模式的六大原则">设计模式的六大原则</h2><p><strong>1.单一职责原则(SRP)</strong><br>就一个类而言,应该仅有一个引起它变化的原因,也应该只有一个职责。每一个职责都是变化的一个轴线，如果一个类有一个以上的职责，这些职责就耦合在了一起。这会导致脆弱的设计。当一个职责发生变化时，可能会影响其它的职责。另外，多个职责耦合在一起，会影响复用性。例如：要实现逻辑和界面的分离。</p>
+<p><strong>2.开放封闭原则(OC)</strong><br>软件实体应该是可扩展，而不可修改的。也就是说，对扩展是开放的，而对修改是封闭的。<br>因此，开放封闭原则主要体现在两个方面：<br>对扩展开放，意味着有新的需求或变化时，可以对现有代码进行扩展，以适应新的情况。<br>对修改封闭，意味着类一旦设计完成，就可以独立完成其工作，而不要对类进行任何修改。</p>
+<p><strong>3.依赖转换原则</strong><br>a.高层次的模块不应该依赖于低层次的模块，他们都应该依赖于抽象。<br>b.抽象不应该依赖于具体，具体应该依赖于抽象。</p>
+<p><strong>4.里氏转换原则</strong><br>子类型必须能够替换掉它们的父类型.</p>
+<p><strong>5.迪米特法则–最少知识原则(LoD)</strong><br>如果两个类不必彼此直接通信，那么这两个类就不应当发生直接的相互作用。如果其中一个类需要调用另一个类的某一个方法的话，可以通过第三者转发这个调用。<br>就是说一个对象应当对其他对象有尽可能少的了解,不和陌生人说话。</p>
+<p><strong>6.合成/聚合复用原则(CARP)</strong><br>尽量使用合成/聚合，尽量不要使用类继承。这里的聚合指的是各种对象组合.</p>
+<h2 id="一些JavaScript的要点">一些JavaScript的要点</h2><p><strong>1.javascript中的所有对象都是从Object.prototype对象克隆出来的.</strong></p>
+<p><strong>2.对于”对象把请求委托给它自己的原型”这句话,更好的说法是对象把请求委托给它的构造器的原型</strong></p>
+<blockquote>
+<p>比如function Person(){}是一个构造器函数,它有原型Person.prototype,它的实例var p = new Person();并没有p.prototype属性,而是顺着原型链找到Person.prototype</p>
+</blockquote>
+<p><strong>3.一个对象的<strong>proto</strong>属性指向这个对象的构造器的prototype,即obj.<strong>proto</strong> –&gt; Obj.prototype</strong></p>
+<blockquote>
+<p>解释:Obj大写,说明是一个构造器函数.和第二点相似</p>
+</blockquote>
+<p><strong>4.原型属性应该指向一个对象,而不是一个函数!!</strong></p>
+<blockquote>
+<p>如Person.prototype = {…some object…};而不能指向Person.prototype = function a();</p>
+</blockquote>
+<p><strong>5.ECMAScript只使用静态（词法）作用域.函数在创建时就确定了作用域</strong></p>
+<blockquote>
+<p>顺便提下，大量介绍JavaScript的文章都认为只有额外创建的函数才是闭包，这种说法是错误的。实践得出，这种方式是最有效的，然而，从理论角度来说，在ECMAScript中所有的函数都是闭包。</p>
+</blockquote>
+<p><strong>6.在ECMAScript中，闭包中的返回语句会将控制流返回给调用上下文（调用者）。</strong></p>
+<p><strong>7.闭包的概念</strong><br>ECMAScript中，闭包指的是：</p>
+<blockquote>
+<p>从理论角度：所有的函数。因为它们都在创建的时候就将上层上下文的数据保存起来了。哪怕是简单的全局变量也是如此，因为函数中访问全局变量就相当于是在访问自由变量，这个时候使用最外层的作用域。</p>
+</blockquote>
+<p>从实践角度：以下函数才算是闭包：</p>
+<blockquote>
+<p>即使创建它的上下文已经销毁，它仍然存在（比如，内部函数从父函数中返回,在代码中引用了自由变量</p>
+</blockquote>
+<p><strong>8.JavaScript 中,函数的参数传递方式都是按值传递,没有按引用传递的参数。但是 JavaScript 中有保存引用的对象,比如数组.</strong></p>
+<p><strong>9.闭包的调用者或者是执行者永远都是window(在浏览器中)</strong></p>
+<p><strong>10.函数声明和函数表达式不同的地方在于函数声明会被提升,而函数表达式不会.</strong></p>
+<p><strong>11.所以函数在调用时都会传递两个隐式参数:arguments和this.</strong></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="设计模式的六大原则">设计模式的六大原则</h2><p><strong>1.单一职责原则(SRP)</strong><br>就一个类而言,应该仅有一个引起它变化的原因,也应该只有一个职责。每一个职责都是变化的一个轴线，如果一个类有一个以上的职责，这些职责就耦合在了]]>
+    </summary>
+    
+      <category term="javascript" scheme="http://blog.boring.ren/tags/javascript/"/>
+    
+      <category term="设计模式" scheme="http://blog.boring.ren/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+      <category term="杂记" scheme="http://blog.boring.ren/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Hello World]]></title>

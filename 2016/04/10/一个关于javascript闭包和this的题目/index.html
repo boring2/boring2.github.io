@@ -3,17 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: hexo | Boring&#39;s Blog</title>
+  <title>一个关于javascript闭包和this的题目 | Boring&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Boring's Blog">
-<meta property="og:url" content="http://blog.boring.ren/tags/hexo/index.html">
+  <meta name="description" content="##1.1var name = &amp;#34;The Window&amp;#34;;&amp;#10;var object = &amp;#123;&amp;#10;    name: &amp;#34;My Object&amp;#34;,&amp;#10;    getNameFunc: function()&amp;#123;&amp;#10;        return this.name;&amp;#10;    &amp;#125;&amp;#10;&amp;#125;
+问:object.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个关于javascript闭包和this的题目">
+<meta property="og:url" content="http://blog.boring.ren/2016/04/10/一个关于javascript闭包和this的题目/index.html">
 <meta property="og:site_name" content="Boring's Blog">
-<meta property="og:description">
+<meta property="og:description" content="##1.1var name = &amp;#34;The Window&amp;#34;;&amp;#10;var object = &amp;#123;&amp;#10;    name: &amp;#34;My Object&amp;#34;,&amp;#10;    getNameFunc: function()&amp;#123;&amp;#10;        return this.name;&amp;#10;    &amp;#125;&amp;#10;&amp;#125;
+问:object.">
+<meta property="og:updated_time" content="2016-04-10T07:16:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Boring's Blog">
-<meta name="twitter:description">
+<meta name="twitter:title" content="一个关于javascript闭包和this的题目">
+<meta name="twitter:description" content="##1.1var name = &amp;#34;The Window&amp;#34;;&amp;#10;var object = &amp;#123;&amp;#10;    name: &amp;#34;My Object&amp;#34;,&amp;#10;    getNameFunc: function()&amp;#123;&amp;#10;        return this.name;&amp;#10;    &amp;#125;&amp;#10;&amp;#125;
+问:object.">
   
     <link rel="alternative" href="/atom.xml" title="Boring&#39;s Blog" type="application/atom+xml">
   
@@ -181,57 +185,121 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-一个关于javascript闭包和this的题目" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/12/05/hello_world/" class="archive-article-date">
-  	<time datetime="2015-12-05T15:56:12.000Z" itemprop="datePublished">Dec 5</time>
+    <div class="article-meta">
+      <a href="/2016/04/10/一个关于javascript闭包和this的题目/" class="article-date">
+  	<time datetime="2016-04-10T03:36:40.000Z" itemprop="datePublished">2016-04-10</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/12/05/hello_world/">Hello World</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      一个关于javascript闭包和this的题目
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/闭包/">闭包</a></li></ul>
 	</div>
 
-          
+        
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/杂记/">杂记</a>
+	<a class="article-category-link" href="/categories/javascript/">javascript</a>
 	</div>
 
 
-        </div>
         <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
+      </div>
+      
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##1.<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var name = &#34;The Window&#34;;&#10;var object = &#123;&#10;    name: &#34;My Object&#34;,&#10;    getNameFunc: function()&#123;&#10;        return this.name;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>问:object.getNameFuc()的返回值是什么?</strong><br>答:”My Object”</p>
+<p>##2.<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var name = &#34;The Window&#34;;&#10;var object = &#123;&#10;    name: &#34;My Object&#34;,&#10;    getNameFunc: function()&#123;&#10;        return function()&#123;&#10;            return name;&#10;        &#125;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>问:object.getNameFuc()()的返回值是什么?</strong><br>答:”The Window”,因为根据函数的作用域链(闭包本身-&gt;然后是闭包外面的函数-&gt;window)找name,但是object.getNameFunc中并没有name变量,所以只能找到window中的name,不要被object.name中的name迷惑了.</p>
+<p>##3.<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var name = &#34;The Window&#34;;&#10;var object = &#123;&#10;    name: &#34;My Object&#34;,&#10;    getNameFunc: function()&#123;&#10;        return function()&#123;&#10;            return this.name;&#10;        &#125;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>问:object.getNameFuc()()的返回值是什么?</strong><br>答:还是”The Window”,因为闭包的调用者或者是执行者永远都是window,所以this也就是window了.</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/10/JavaScript在new一个对象的时候具体发生了什么/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          JavaScript在new一个对象的时候具体发生了什么
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/10/以前的记录整理/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">以前的记录整理</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="一个关于javascript闭包和this的题目" data-title="一个关于javascript闭包和this的题目" data-url="http://blog.boring.ren/2016/04/10/一个关于javascript闭包和this的题目/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"boring"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 </div>
       <footer id="footer">
@@ -257,9 +325,9 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false
 	}
