@@ -3,17 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: 杂记 | Boring&#39;s Blog</title>
+  <title>JavaScript方法重载(一) | Boring&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Boring's Blog">
-<meta property="og:url" content="http://blog.boring.ren/categories/杂记/index.html">
+  <meta name="description" content="最近在读中文版一书,其中79页(代码清单4.15)有一个函数重载的例子,感觉有点难懂.1function addMethod(object, name, fn) &amp;#123;&amp;#10;  var old = object[name];&amp;#10;  object[name] = function()&amp;#123;&amp;#10;    if (fn.length == arguments.length)&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript方法重载(一)">
+<meta property="og:url" content="http://blog.boring.ren/2016/04/10/JavaScript方法重载-一/index.html">
 <meta property="og:site_name" content="Boring's Blog">
-<meta property="og:description">
+<meta property="og:description" content="最近在读中文版一书,其中79页(代码清单4.15)有一个函数重载的例子,感觉有点难懂.1function addMethod(object, name, fn) &amp;#123;&amp;#10;  var old = object[name];&amp;#10;  object[name] = function()&amp;#123;&amp;#10;    if (fn.length == arguments.length)&amp;#">
+<meta property="og:image" content="http://blog.boring.ren/images/IMG_1756.JPG">
+<meta property="og:updated_time" content="2016-04-10T13:10:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Boring's Blog">
-<meta name="twitter:description">
+<meta name="twitter:title" content="JavaScript方法重载(一)">
+<meta name="twitter:description" content="最近在读中文版一书,其中79页(代码清单4.15)有一个函数重载的例子,感觉有点难懂.1function addMethod(object, name, fn) &amp;#123;&amp;#10;  var old = object[name];&amp;#10;  object[name] = function()&amp;#123;&amp;#10;    if (fn.length == arguments.length)&amp;#">
   
     <link rel="alternative" href="/atom.xml" title="Boring&#39;s Blog" type="application/atom+xml">
   
@@ -181,102 +183,108 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-JavaScript方法重载-一" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/10/以前的记录整理/" class="archive-article-date">
-  	<time datetime="2016-04-10T02:51:00.000Z" itemprop="datePublished">Apr 10</time>
+    <div class="article-meta">
+      <a href="/2016/04/10/JavaScript方法重载-一/" class="article-date">
+  	<time datetime="2016-04-10T11:09:50.000Z" itemprop="datePublished">2016-04-10</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/10/以前的记录整理/">以前的记录整理</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaScript方法重载(一)
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/忍者秘籍/">忍者秘籍</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/重载/">重载</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/闭包/">闭包</a></li></ul>
 	</div>
 
-          
+        
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/杂记/">杂记</a>
+	<a class="article-category-link" href="/categories/javascript/">javascript</a>
 	</div>
 
 
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在读<javascript忍者秘籍>中文版一书,其中79页(代码清单4.15)有一个<strong>函数重载</strong>的例子,感觉有点难懂.<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function addMethod(object, name, fn) &#123;&#10;  var old = object[name];&#10;  object[name] = function()&#123;&#10;    if (fn.length == arguments.length)&#10;      return fn.apply(this, arguments);&#10;    else if (typeof old == &#39;function&#39;)&#10;      return old.apply(this, arguments);&#10;  &#125;;&#10;&#125;&#10;&#10;var ninjas = &#123;&#10;  values: [&#34;Dean Edwards&#34;, &#34;Sam Stephenson&#34;, &#34;Alex Russell&#34;]&#10;&#125;;&#10;&#10;addMethod(ninjas, &#34;find&#34;, function()&#123;&#10;  return this.values;&#10;&#125;);        //#0&#10;&#10;addMethod(ninjas, &#34;find&#34;, function(name)&#123;&#10;  var ret = [];&#10;  for (var i = 0; i &#60; this.values.length; i++)&#10;    if (this.values[i].indexOf(name) == 0)&#10;      ret.push(this.values[i]);&#10;  return ret;&#10;&#125;);             //#1&#10;&#10;addMethod(ninjas, &#34;find&#34;, function(first, last)&#123;&#10;  var ret = [];&#10;  for (var i = 0; i &#60; this.values.length; i++)&#10;    if (this.values[i] == (first + &#34; &#34; + last))&#10;      ret.push(this.values[i]);&#10;  return ret;&#10;&#125;);           //#2&#10;&#10;assert(ninjas.find().length == 3,&#10;       &#34;Found all ninjas&#34;);//#3&#10;assert(ninjas.find(&#34;Sam&#34;).length == 1,&#10;       &#34;Found ninja by first name&#34;);//#4&#10;assert(ninjas.find(&#34;Dean&#34;, &#34;Edwards&#34;).length == 1,&#10;       &#34;Found ninja by first and last name&#34;);//#5&#10;assert(ninjas.find(&#34;Alex&#34;, &#34;Russell&#34;, &#34;Jr&#34;) == null,&#10;       &#34;Found nothing&#34;);//#6</span><br></pre></td></tr></table></figure></javascript忍者秘籍></p>
+<p>按我的理解,应该是这个例子创建了三个闭包,每个闭包里能访问的是old和fn.<br>如下图所示,每当调用ninjas.find时都会顺着箭头网上找相应参数个数的函数.<br>#3 中的调用将会从2个参数的函数开始-&gt;1个参数的函数-&gt;0个参数的函数<br>#4 中的调用将会从2个参数的函数开始-&gt;1个参数的函数<br>#5 中的调用将会从2个参数的函数开始<br>#6 中的调用将会从2个参数的函数开始-&gt;1个参数的函数-&gt;0个参数的函数-&gt;old不是函数<br>所以这种写法虽然实现了不同参数个数的重载,但是没有判断参数的类型,而且也会使调用变慢.<br><img src="/images/IMG_1756.JPG" width="400" height="600"></p>
+
+      
+    </div>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/04/10/JavaScript中四种调用函数的方法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaScript中四种调用函数的方法</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/12/05/hello_world/" class="archive-article-date">
-  	<time datetime="2015-12-05T15:56:12.000Z" itemprop="datePublished">Dec 5</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/12/05/hello_world/">Hello World</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
-
-          
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/杂记/">杂记</a>
-	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="JavaScript方法重载-一" data-title="JavaScript方法重载(一)" data-url="http://blog.boring.ren/2016/04/10/JavaScript方法重载-一/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"boring"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 </div>
       <footer id="footer">
@@ -302,10 +310,10 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false
 	}
 </script>

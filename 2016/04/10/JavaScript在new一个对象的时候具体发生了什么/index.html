@@ -5,19 +5,19 @@
   
   <title>JavaScript在new一个对象的时候具体发生了什么 | Boring&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我们经常使用new去调用的一个构造器函数, 但是new之后到底做了什么呢? 如:1var Person = function (name) &amp;#123;&amp;#10;    this.name = name;&amp;#10;&amp;#125;&amp;#10;var p = new Person(&amp;#34;Boring&amp;#34;);
- 以上代码在调用时,会变成如下 1var p = (Person (name) &amp;#12">
+  <meta name="description" content="我们经常使用new去调用的一个构造器函数, 但是new之后到底做了什么呢? 如:1var Person = function (name) &amp;#123;&amp;#10;  this.name = name;&amp;#10;&amp;#125;&amp;#10;var p = new Person(&amp;#34;Boring&amp;#34;);
+ 以上代码在调用时,会变成如下 1var p = (Person (name) &amp;#123;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript在new一个对象的时候具体发生了什么">
 <meta property="og:url" content="http://blog.boring.ren/2016/04/10/JavaScript在new一个对象的时候具体发生了什么/index.html">
 <meta property="og:site_name" content="Boring's Blog">
-<meta property="og:description" content="我们经常使用new去调用的一个构造器函数, 但是new之后到底做了什么呢? 如:1var Person = function (name) &amp;#123;&amp;#10;    this.name = name;&amp;#10;&amp;#125;&amp;#10;var p = new Person(&amp;#34;Boring&amp;#34;);
- 以上代码在调用时,会变成如下 1var p = (Person (name) &amp;#12">
-<meta property="og:updated_time" content="2016-04-10T07:32:31.000Z">
+<meta property="og:description" content="我们经常使用new去调用的一个构造器函数, 但是new之后到底做了什么呢? 如:1var Person = function (name) &amp;#123;&amp;#10;  this.name = name;&amp;#10;&amp;#125;&amp;#10;var p = new Person(&amp;#34;Boring&amp;#34;);
+ 以上代码在调用时,会变成如下 1var p = (Person (name) &amp;#123;">
+<meta property="og:updated_time" content="2016-04-10T11:12:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript在new一个对象的时候具体发生了什么">
-<meta name="twitter:description" content="我们经常使用new去调用的一个构造器函数, 但是new之后到底做了什么呢? 如:1var Person = function (name) &amp;#123;&amp;#10;    this.name = name;&amp;#10;&amp;#125;&amp;#10;var p = new Person(&amp;#34;Boring&amp;#34;);
- 以上代码在调用时,会变成如下 1var p = (Person (name) &amp;#12">
+<meta name="twitter:description" content="我们经常使用new去调用的一个构造器函数, 但是new之后到底做了什么呢? 如:1var Person = function (name) &amp;#123;&amp;#10;  this.name = name;&amp;#10;&amp;#125;&amp;#10;var p = new Person(&amp;#34;Boring&amp;#34;);
+ 以上代码在调用时,会变成如下 1var p = (Person (name) &amp;#123;">
   
     <link rel="alternative" href="/atom.xml" title="Boring&#39;s Blog" type="application/atom+xml">
   
@@ -117,7 +117,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a>
+						<a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/忍者秘籍/" style="font-size: 10px;">忍者秘籍</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/重载/" style="font-size: 10px;">重载</a> <a href="/tags/闭包/" style="font-size: 15px;">闭包</a>
 					</div>
 				</section>
 				
@@ -226,8 +226,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="我们经常使用new去调用的一个构造器函数,_但是new之后到底做了什么呢?">我们经常使用new去调用的一个构造器函数, 但是new之后到底做了什么呢?</h2><p><strong> 如:</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var Person = function (name) &#123;&#10;    this.name = name;&#10;&#125;&#10;var p = new Person(&#34;Boring&#34;);</span><br></pre></td></tr></table></figure></p>
-<p><strong> 以上代码在调用时,会变成如下 </strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var p = (Person (name) &#123;&#10;    var _newObj = &#123; //#0&#10;        constructor: Person; // #1&#10;        __proto__: Person.prototype; //#2&#10;    &#125;;&#10;    _newObj.constructor(name); //#3&#10;    return _newObj; //#4&#10;&#125;)();</span><br></pre></td></tr></table></figure></p>
+        <h2 id="我们经常使用new去调用的一个构造器函数,_但是new之后到底做了什么呢?">我们经常使用new去调用的一个构造器函数, 但是new之后到底做了什么呢?</h2><p><strong> 如:</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var Person = function (name) &#123;&#10;  this.name = name;&#10;&#125;&#10;var p = new Person(&#34;Boring&#34;);</span><br></pre></td></tr></table></figure></p>
+<p><strong> 以上代码在调用时,会变成如下 </strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var p = (Person (name) &#123;&#10;  var _newObj = &#123; //#0&#10;    constructor: Person; // #1&#10;    __proto__: Person.prototype; //#2&#10;  &#125;;&#10;  _newObj.constructor(name); //#3&#10;  return _newObj; //#4&#10;&#125;)();</span><br></pre></td></tr></table></figure></p>
 <p><strong>解析:</strong><br>#0 创建一个新的对象,_newObj;<br>#1 将对象的constructor赋值为Person,即构造器函数;<br>#2 将对象的__proto__属性赋值为Person.prototype,即原型链的概念;<br>#3 使用构造器函数的方法设置name属性this.name = name;可以转成<strong>_newObj.constructor.call(_newObj, name)</strong>,此时的this就是指向_newObj,由于call的原因;<br>#4 返回改对象给p变量.</p>
 
       
